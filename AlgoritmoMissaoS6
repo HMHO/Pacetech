@@ -7,77 +7,148 @@ public class MissaoS6 {
     public static void main(String[] args) {
 
         //Inicio de variáveis
-        int menu, submenu = 0;
+        int menu, submenuT, submenuM = 0;
         float tempC, tempF, vReal, vDolar, vCotacao = 0f;
-
-        //Menú Principal
-        System.out.println("O que deseja fazer?");
+        char resposta = 'S';
+        boolean flag = true;
+        
         Scanner leitor = new Scanner(System.in);
 
         do {
+            //Menú Principal
+            System.out.println("------- Menu Principal -------");
             System.out.println("1. Conversao de Temperatura");
             System.out.println("2. Conversao de Moeda");
             System.out.println("3. Sair");
             System.out.println(" ");
-
+            System.out.print("Escolha uma opcao: ");
             menu = leitor.nextInt();
-
+            System.out.println(" ");
+            
             switch (menu) {
-                case 1 -> {
-
+                case 1:
                     //Submenú de Conversao de Temperatura    
                     do {
-                        System.out.println("Escolha uma opcao, por favor:");
+                        System.out.println("---- Submenu Conversao de Temperatura ----");
                         System.out.println("1. Conversao Celsius para Fahrenheit");
                         System.out.println("2. Conversao de Fahrenheit para Celsius");
-                        System.out.println("3. Voltar ao Menú Principal");
+                        System.out.println("3. Voltar ao Menu Principal");
                         System.out.println(" ");
-                        submenu = leitor.nextInt();
+                        System.out.print("Escolha uma opcao: ");
+                        submenuT = leitor.nextInt();
+                        System.out.println(" ");
+                        
+                        switch (submenuT) {
 
-                        switch (submenu) {
-                  
-                            case 1: {
-                                char resposta = 'S';
-                                while (resposta == 's' || resposta == 'S') {
-                                    System.out.print("Digite a temperatura em °C :");
-                                    tempC = leitor.nextFloat();
-                                    tempF = (tempC * 9 / 5) + 32;
-                                    System.out.println(" ");
-                                    System.out.println("A temperatura em °F é = " 
-                                            + String.format("%.2f", tempF));
-                                    System.out.println(" ");
-                                
-                                    if (resposta == 'n' || resposta == 'N') {
-                                    break;
-                                }
-                                
-                                }
-                            
-                  
-                                System.out.println("Deseja fazer uma nova conversao? "
-                                        + "S - Sim / N - Nao");
-                                resposta = leitor.next().charAt(0);
+                            case 1:
+
+                                System.out.print("Digite a temperatura em °C: ");
+                                tempC = leitor.nextFloat();
+                                tempF = (tempC * 9 / 5) + 32;
                                 System.out.println(" ");
-                            }
+                                System.out.println("A temperatura em °F e = "
+                                        + String.format("%.2f", tempF, "°F"));
+                                break;
+
+                            case 2:
+                                System.out.print("Digite a temperatura em °F: ");
+                                tempF = leitor.nextFloat();
+                                tempC = (tempF - 32) * 5 / 9;
+                                System.out.println(" ");
+                                System.out.println("A temperatura em °C e = "
+                                        + String.format("%.2f", tempC, "°C"));
+                                break;
+
+                            case 3:
+                                flag = false;
+                                break;
+
+                            default:
+                                System.out.println("Opcao invalida, tente novamente");
+                                System.out.println(" ");
+                                flag = false;
+                                break;
+
+                        }
+                        if (flag == true) {
+                            System.out.println(" ");
+                            System.out.print("Deseja fazer uma nova conversao? "
+                                    + "S - Sim / N - Nao: ");
+                            resposta = leitor.next().charAt(0);
                         }
 
-                    } while (submenu != 3);
+                    } while ((submenuT != 3) && (resposta == 's' || resposta == 'S'));
+                    break;
 
-                }
+                case 2:
+                    //Submenú de Conversao de Moeda  
+                    do {
+                        System.out.println("---- Submenu Conversao de Moeda ----");
+                        System.out.println("1. Converter de Real para Dolar");
+                        System.out.println("2. Converter de Dolar para Real");
+                        System.out.println("3. Voltar ao Menu Principal");
+                        System.out.println(" ");
+                        System.out.print("Escolha uma opcao: ");
+                        submenuM = leitor.nextInt();
+                        System.out.println(" ");
 
-                case 2 ->
-                    System.out.println("Entrou no case de Velocidade");
+                        switch (submenuM) {
+                            case 1:
+                                System.out.print("Digite o valor da cotacao do "
+                                        + "dia para o Dolar em Reais(R$): ");
+                                vCotacao = leitor.nextFloat();
+                                System.out.print("Digite o valor em Reais(R$) "
+                                        + "que deseja converter: ");
+                                vReal = leitor.nextFloat();
+                                vDolar = vReal / vCotacao;
+                                System.out.println(" ");
+                                System.out.println("O valor em Dolares e = US$"
+                                        + String.format("%.2f", vDolar));
+                                break;
 
-                case 3 ->
-                    System.out.println("UsuÃ¡rio quer sair...");
+                            case 2:
+                                System.out.print("Digite o valor da cotacao do "
+                                        + "dia para o Dolar em Reais(R$): ");
+                                vCotacao = leitor.nextFloat();
+                                System.out.print("Digite o valor em Dolares(US$) "
+                                        + "que deseja converter: ");
+                                vDolar = leitor.nextFloat();
+                                vReal = vDolar * vCotacao;
+                                System.out.println(" ");
+                                System.out.println("O valor em Reais e = R$ "
+                                        + String.format("%.2f", vReal));
+                                break;
 
-                default ->
-                    System.out.println("Opcao invÃ¡lida, tente novamente");
+                            case 3:
+                                flag = false;
+                                break;
 
+                            default:
+                                System.out.println("Opcao invalida, tente novamente");
+                                System.out.println(" ");
+                                flag = false;
+                                break;
+
+                        }
+                        if (flag == true) {
+                            System.out.println(" ");
+                            System.out.print("Deseja fazer uma nova conversao? "
+                                    + "S - Sim / N - Nao: ");
+                            resposta = leitor.next().charAt(0);
+                        }
+
+                    } while ((submenuM != 3) && (resposta == 's' || resposta == 'S'));
+                    break;
+
+                case 3:
+                    System.out.println("Saindo, por favor aguarde...");
+                    break;
+
+                default:
+                    System.out.println("Opcao invalida, tente novamente");
+                    System.out.println(" ");
+                    break;
             }
-
         } while (menu != 3);
-
     }
-
 }
