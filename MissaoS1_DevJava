@@ -1,0 +1,38 @@
+package MissaoS1;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Collections;
+
+public class MissaoS1 {
+
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numeros = new ArrayList<>();
+
+        Scanner leitura = new Scanner(System.in);
+        System.out.print("Digite o numero:");
+        numeros.add(leitura.nextInt());
+
+        int i = 0;
+
+        while (numeros.get(i) != -1) {
+            System.out.print("Digite o numero:");
+            numeros.add(leitura.nextInt());
+            i = i + 1;
+        }
+
+        numeros.remove(i);
+        System.out.println("Seus numeros digitados sao: " + numeros);
+        int c = numeros.size();
+        System.out.println("Voce digitou:" + c + " numeros");
+
+        int minN = Collections.min(numeros);
+        System.out.println("O numero menor e:" + minN);
+
+        int maxN = Collections.max(numeros);
+        System.out.println("O numero maior e:" + maxN);
+
+    }
+
+}
